@@ -1,5 +1,6 @@
 import logging
-from monitor_service import urls as msu, status as mss
+import uvicorn
+from .monitor_service import urls as msu, status as mss
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
@@ -33,3 +34,7 @@ async def status(request: Request, monitor: str):
 @repeat_every(seconds=5, logger=logger, wait_first=True)
 def periodic():
     msu.csv_parse("sample.csv")
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
