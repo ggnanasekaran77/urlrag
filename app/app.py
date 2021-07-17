@@ -1,5 +1,6 @@
 import uvicorn
-from app.monitor_service import urls as msu, status as mss
+from monitor_service import urls as msu
+from monitor_service import status as mss
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
