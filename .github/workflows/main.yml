@@ -9,6 +9,8 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
+    env:
+      PYTHONPATH: /home/runner/work/monitor-service/monitor-service/app
     steps:
       - name: Check Out Repo
         uses: actions/checkout@v2
