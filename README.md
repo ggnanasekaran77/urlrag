@@ -1,1 +1,2 @@
+[![Build Status - GitHub](https://github.com/ggnanasekaran77/monitor-service/workflows/pytesting/badge.svg)](https://github.com/ggnanasekaran77/monitor-service/actions?query=workflow%3Apytesting)
 # monitor-service
