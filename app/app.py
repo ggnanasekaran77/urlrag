@@ -31,14 +31,20 @@ async def health(request: Request):
     return templates.TemplateResponse("health.html", {"request": request, "data": data})
 
 
-@app.get("/status/{monitor}", response_class=HTMLResponse)
+@app.get("/status", response_class=HTMLResponse)
 async def status(request: Request):
     data = mss.http_status_code()
     return templates.TemplateResponse("status_url.html", {"request": request, "data": data})
 
 
+@app.get("/refresh")
+async def refresh():
+    msu.csv_parse("sample.csv")
+    return {"action": "refresh"}
+
+
 @app.on_event("startup")
-@repeat_every(seconds=5, wait_first=True)
+@repeat_every(seconds=600)
 def periodic():
     msu.csv_parse("sample.csv")
 
