@@ -15,7 +15,7 @@ def main():
             |> filter(fn: (r) => r._measurement == "http_response_code") 
             |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")
             |> sort(columns:["http_response_code", "_value"], desc: true)
-            |> limit(n:50000)
+            |> limit(n:20000)
     '''
 
     tm = Template(query)
@@ -23,3 +23,4 @@ def main():
     result = client.query_api().query(query=influx_query)
 
     return result
+
