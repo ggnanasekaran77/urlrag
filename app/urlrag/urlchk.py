@@ -66,12 +66,18 @@ class InfluxDBWriter(multiprocessing.Process):
 
 def parse_row(row: OrderedDict):
 
+    try:
+        http_response_code = requests.head(row['url'], timeout=2, allow_redirects=True).status_code
+    except:
+        http_response_code = 601
+
     return Point("http_response_code") \
         .tag("monitor_type", "http_response_code") \
         .field("name", row['name']) \
         .field("url", row['url']) \
-        .field("http_response_code", requests.head(row['url'], timeout=2, allow_redirects=True).status_code) \
-        .time(datetime.utcnow(), WritePrecision.NS)
+        .field("http_response_code", http_response_code) \
+        .time(datetime.utcnow(), WritePrecision.NS) \
+        .to_line_protocol()
 
 
 def parse_rows(rows, total_size):
@@ -86,8 +92,7 @@ def parse_rows(rows, total_size):
 
     counter_.value += len(_parsed_rows)
     if counter_.value % 1_000 == 0:
-        print('{0:8}{1}'.format(counter_.value, ' - {0:.2f} %'
-                                .format(100 * float(progress_.value) / float(int(total_size))) if total_size else ""))
+        print(f"processed: {counter_}")
         pass
 
     queue_.put(_parsed_rows)
@@ -115,7 +120,7 @@ def process_urls():
     progress_ = Value('i', 0)
     startTime = datetime.now()
 
-    url = "file://urls.csv"
+    url = "file:///app/urls.csv"
 
     """
     Open URL and for stream data 

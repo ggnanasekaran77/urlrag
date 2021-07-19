@@ -7,8 +7,7 @@ from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi_utils.tasks import repeat_every
 
-from monitor_service import urlchk
-from monitor_service import status
+from urlrag import urlchk, status as urlsrag_status
 
 
 urllib3.disable_warnings()
@@ -35,7 +34,7 @@ async def health(request: Request):
 
 @app.get("/status", response_class=HTMLResponse)
 async def status(request: Request):
-    data = status.main()
+    data = urlsrag_status.main()
     return templates.TemplateResponse("status_url.html", {"request": request, "data": data})
 
 
