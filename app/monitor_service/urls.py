@@ -28,7 +28,7 @@ def insert_influxdb(name, url, http_status_code):
 
 
 def http_code(name, url):
-    http_status_code = requests.head(url, timeout=2).status_code
+    http_status_code = requests.head(url, timeout=2, allow_redirects=True).status_code
     insert_influxdb(name, url, http_status_code)
 
 

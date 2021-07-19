@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Monitor Service</title>
+<title>URL RAG DashBoard</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <link rel="icon" href="https://img.icons8.com/fluent/48/000000/monitor.png">
 <link rel="stylesheet" href="/static/css/status_url.css">
@@ -13,17 +13,17 @@
             <th class="row-1 row-Time">Time</td>
             <th class="row-2 row-Name">Name</td>
             <th class="row-2 row-URL">URL</td>
-            <th class="row-2 row-Status">Status Code</td>
+            <th class="row-2 row-Response">Response Code</td>
         </tr>
 {% for table in data -%}
     {% for record in table -%}
-        {% if record.http_status_code >= 200 and record.http_status_code < 300 %}
+        {% if record.http_response_code >= 200 and record.http_response_code < 300 %}
             <tr class="green">
-        {% elif record.http_status_code >= 300 and record.http_status_code < 400 %}
+        {% elif record.http_response_code >= 300 and record.http_response_code < 400 %}
             <tr class="gray">
-        {% elif record.http_status_code >= 400 and record.http_status_code < 500 %}
+        {% elif record.http_response_code >= 400 and record.http_response_code < 500 %}
             <tr class="brown">
-        {% elif record.http_status_code >= 500 and record.http_status_code < 600 %}
+        {% elif record.http_response_code >= 500 and record.http_response_code < 600 %}
             <tr class="red">
         {% else %}
             <tr class="black">
@@ -31,7 +31,7 @@
                 <td>{{ record._time }}</td>
                 <td>{{ record.name }}</td>
                 <td>{{ record.url }}</td>
-                <td>{{ record.http_status_code }}</td>
+                <td>{{ record.http_response_code }}</td>
             </tr>
     {% endfor %}
 {% endfor %}
