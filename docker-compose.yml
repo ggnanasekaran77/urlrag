@@ -22,9 +22,11 @@ services:
       timeout: 5s
       retries: 5
 
-  monitor_service:
+  urlrag:
     build: .
     hostname: monitor101
+    volumes:
+      - "${URL_CSV_FILE}:/tmp/urls.csv"
     ports:
       - "8000:8000"
     depends_on:
@@ -33,4 +35,4 @@ services:
     links:
       - influxdb
 volumes:
-  influxdb-storage: 
+  influxdb-storage:

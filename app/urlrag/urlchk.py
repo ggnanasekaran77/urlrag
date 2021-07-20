@@ -188,13 +188,24 @@ def file_validation():
         return False
 
 
+def db_validation():
+
+    client = InfluxDBClient.from_config_file("config.ini").health()
+    if client.status == 'pass':
+        return True
+    else:
+        print("InfluxDB is not up")
+        return False
+
+
 def main():
     global url
     global cpu_count
 
-    url = "file:///app/urls.csv"
     cpu_count = 4
+    url = "file:///tmp/urls.csv"
 
-    if file_validation():
+    if db_validation() and file_validation():
         print(f"{url} urlchk process started")
         process_urls()
+

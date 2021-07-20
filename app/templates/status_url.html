@@ -16,11 +16,11 @@
         {% else %}
             <table id="customers">
                 <tr class="blue">
-                <th class="row-1 row-Time">Time</td>
-                <th class="row-2 row-Name">Name</td>
-                <th class="row-2 row-URL">URL</td>
-                <th class="row-2 row-Response">Response Code</td>
-            </tr>
+                    <th class="row-1 row-Time">Time</td>
+                    <th class="row-2 row-Name">Name</td>
+                    <th class="row-2 row-URL">URL</td>
+                    <th class="row-2 row-Response">Response Code</td>
+                </tr>
 
             {% for record in table -%}
                 {% if record.http_response_code >= 200 and record.http_response_code < 300 %}
