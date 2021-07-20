@@ -21,6 +21,8 @@ gnanam,https://ggnanasekaran.com
 ## To RUN this App on MacOS
 ```shell
 unzip urlrag.zip
+# or
+# git clone git@github.com:ggnanasekaran77/urlrag.git
 cd urlrag
 # URL_CSV_FILE=<<File Path>> docker-compose up
 # Example below
@@ -61,6 +63,7 @@ docker-compose down
 
 ## 10000 URLs
 ![1000 URLs](./images/10000_urls.png)
+![1000 URLs](./images/1000_urls2.png)
 
 ## Results Screenshots
 ![Results Screenshots](./images/results.png)

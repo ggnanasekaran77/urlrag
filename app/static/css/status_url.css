@@ -27,13 +27,13 @@ tr.red td {
   border: 1px solid #ddd;
    padding: 8px;
 }
-tr.gray td {
-  background-color: gray;
+tr.amber td {
+  background-color: #FFBF00;
   border: 1px solid #ddd;
    padding: 8px;
 }
 tr.brown td {
-  background-color: brown;
+  background-color: #FFA500;
   border: 1px solid #ddd;
    padding: 8px;
 }
