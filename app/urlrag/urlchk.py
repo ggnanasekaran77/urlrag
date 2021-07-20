@@ -17,6 +17,8 @@ from rx import operators as ops
 from influxdb_client import Point, InfluxDBClient, WriteOptions, WritePrecision
 from influxdb_client.client.write_api import WriteType
 
+from . import utils as urlrag_utils
+
 
 class ProgressTextIOWrapper(io.TextIOWrapper):
     """
@@ -120,8 +122,6 @@ def process_urls():
     progress_ = Value('i', 0)
     startTime = datetime.now()
 
-    url = "file:///app/urls.csv"
-
     """
     Open URL and for stream data 
     """
@@ -140,7 +140,7 @@ def process_urls():
     """
     Create process pool for parallel encoding into LineProtocol
     """
-    cpu_count = multiprocessing.cpu_count()
+
     with concurrent.futures.ProcessPoolExecutor(cpu_count, initializer=init_counter,
                                                 initargs=(counter_, progress_, queue_)) as executor:
         """
@@ -168,5 +168,33 @@ def process_urls():
     print()
 
 
+def file_validation():
+
+    if urlrag_utils.file_path_validation(url):
+
+        if urlrag_utils.file_header_validation(url):
+
+            return True
+
+        else:
+            print(f"{url} has no header found or invalid header, refer below sample")
+            print(urlrag_utils.sample_csv())
+
+            return False
+
+    else:
+        print(f"{url} is not valid file path")
+
+        return False
+
+
 def main():
-    process_urls()
+    global url
+    global cpu_count
+
+    url = "file:///app/urls.csv"
+    cpu_count = 4
+
+    if file_validation():
+        print(f"{url} urlchk process started")
+        process_urls()
