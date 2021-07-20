@@ -1,3 +1,6 @@
+"""
+Get the last 1hour data from influxdb and return sorted output based http_response_code
+"""
 from . import config
 
 from influxdb_client import InfluxDBClient
@@ -15,7 +18,7 @@ def main():
             |> filter(fn: (r) => r._measurement == "http_response_code") 
             |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")
             |> sort(columns:["http_response_code", "_value"], desc: true)
-            |> limit(n:20000)
+            |> limit(n:11000)
     '''
 
     tm = Template(query)
