@@ -1,4 +1,4 @@
-[![Build Status - GitHub](https://github.com/ggnanasekaran77/urlrag/workflows/pytesting/badge.svg)](https://github.com/ggnanasekaran77/monitor-service/actions?query=workflow%3Apytesting)
+[![Build Status - GitHub](https://github.com/ggnanasekaran77/urlrag/workflows/pytesting/badge.svg)](https://github.com/ggnanasekaran77/urlrag/actions?query=workflow%3Apytesting)
 # URLRAG 
 URL Red Amber Green status
 
