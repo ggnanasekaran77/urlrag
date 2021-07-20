@@ -24,10 +24,50 @@ unzip urlrag.zip
 cd urlrag
 # URL_CSV_FILE=<<File Path>> docker-compose up
 # Example below
-URL_CSV_FILE=/tmp/urls.csv docker-compose up
+URL_CSV_FILE=/tmp/urls.csv docker-compose up -d
 # or
-URL_CSV_FILE=./urls.csv docker-compose up
+URL_CSV_FILE=./urls.csv docker-compose up -d
+# To shutdown
+docker-compose down
 ```
+
+## To Open this app
+* If local in browser open [http://localhost:8000](http://localhost:8000)
+* If any server http://server_ip:8000
+
+## Tech stack
+* Python 3.9 
+* FastApi
+* InfluxDB - Time serious database
+* Jinja2 Template
+* GitHub Actions  
+* Html
+
+## Links
+* [GitHub Actions CI](#gitHub-actions-ci)
+* [10000 URLs with 4CPU Result](#1000-urls)
+* [Results Screenshots](#results-screenshots)
+* [Sample Demo Video](#demo-video)
+
+## Improvements
+* logger integration
+* Python documentation
+* Input validations
+* Test Containers for pytest
+* Deployment or CD
+
+## GitHub Actions CI
+![gitHub-actions-ci](./images/github_actions_ci.png)
+
+## 10000 URLs
+![1000 URLs](./images/10000_urls.png)
+
+## Results Screenshots
+![Results Screenshots](./images/results.png)
+![Results Screenshots](./images/results1.png)
 
 ## Docker Settings
 ![Docker Settings](./images/docker_settings.png)
+
+## Demo Video
+![Demo Video](./images/demo.mp4)

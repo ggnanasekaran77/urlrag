@@ -6,6 +6,8 @@ services:
     hostname: influxdb
     ports:
       - "8086:8086"
+    volumes:
+      - ./influxdb-storage:/mnt/shared/code/influxdb2
     environment:
       - DOCKER_INFLUXDB_INIT_MODE=setup
       - DOCKER_INFLUXDB_INIT_USERNAME=admin
@@ -24,7 +26,7 @@ services:
     build: .
     hostname: monitor101
     volumes:
-      - "${URL_CSV_FILE}:/app/data/urls.csv"
+      - "${URL_CSV_FILE}:/tmp/urls.csv"
     ports:
       - "8000:8000"
     depends_on:
@@ -32,3 +34,5 @@ services:
         condition: service_healthy
     links:
       - influxdb
+volumes:
+  influxdb-storage:

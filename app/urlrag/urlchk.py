@@ -203,7 +203,7 @@ def main():
     global cpu_count
 
     cpu_count = 4
-    url = "file:///app/data/urls.csv"
+    url = "file:///tmp/urls.csv"
 
     if db_validation() and file_validation():
         print(f"{url} urlchk process started")

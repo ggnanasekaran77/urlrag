@@ -4,6 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="https://img.icons8.com/fluent/48/000000/monitor.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/static/css/status_url.css">
 <title>URL RAG DashBoard</title>
 <style>
 a:link {
@@ -22,13 +23,71 @@ a:link {
 .btn:hover {
   background-color: RoyalBlue;
 }
+td {
+   color: #FFFFCC;
+}
+table {
+  width:20%;
+  border-collapse:collapse;
+}
+table th{
+   background-color: #0777E7;
+   border: 1px solid #ddd;
+   padding: 8px;
+}
+tr.green td {
+  background-color: green;
+  border: 1px solid #ddd;
+   padding: 8px;
+}
+tr.red td {
+  background-color: red;
+  border: 1px solid #ddd;
+   padding: 8px;
+}
+tr.gray td {
+  background-color: gray;
+  border: 1px solid #ddd;
+   padding: 8px;
+}
+tr.brown td {
+  background-color: brown;
+  border: 1px solid #ddd;
+   padding: 8px;
+}
+tr.black td {
+  background-color: black;
+  border: 1px solid #ddd;
+   padding: 8px;
+}
+
 </style>
 </head>
 <body>
 
 <h1>{{data.page}}</h1>
 <button class="btn" onclick="document.location='status'"><i class="fa fa-tv"></i><a href="www.google.com"></a></button>
-
+<table>
+    <tr class="blue">
+        <th>Response Code RAG</th>
+    </tr>
+    <tr class="green">
+        <td>200 to 299</td>
+    </tr>
+    <tr class="gray">
+        <td>300 to 399</td>
+    </tr>
+    <tr class="brown">
+        <td>400 to 499</td>
+    </tr>
+    <tr class="red">
+        <td>500 to 599</td>
+    </tr>
+    <tr class="black">
+        <td>601</td>
+    </tr>
+</table>
+<h2>601 DNS or Network Issue</h2>
 </body>
 </html>
 

@@ -8,6 +8,10 @@ from jinja2 import Template
 
 
 def main():
+    """
+    Fetch Data from influxdb for fast one hour and start them
+    as per response code and return table result
+    """
     influx_config = config.InfluxConfig.get_config()
     bucket = influx_config['bucket_name']
     conf_file = influx_config['conf_file']
@@ -25,11 +29,4 @@ def main():
     influx_query = tm.render(bucket=bucket)
     result = client.query_api().query(query=influx_query)
 
-    try:
-        if len(result) <= 0:
-            result = False
-    except:
-        print("Result is not empty table")
-
     return result
-
