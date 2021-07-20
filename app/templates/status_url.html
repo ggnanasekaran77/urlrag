@@ -4,40 +4,43 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <link rel="icon" href="https://img.icons8.com/fluent/48/000000/monitor.png">
 <link rel="stylesheet" href="/static/css/status_url.css">
-
 </head>
 
 <body>
-{% if data is none %}
-<h1>URLs are Under Processing, Initial Wait Time 10 Minutes</h1>
+{% if data is defined and not data %}
+<h1>URLs response code are Under Processing, Initial Wait Time 10 Minutes</h1>
 {% else %}
-<h1>URL RAG DashBoard</h1>
-    <table id="customers">
-        <tr class="blue">
-            <th class="row-1 row-Time">Time</td>
-            <th class="row-2 row-Name">Name</td>
-            <th class="row-2 row-URL">URL</td>
-            <th class="row-2 row-Response">Response Code</td>
-        </tr>
     {% for table in data -%}
-        {% for record in table -%}
-            {% if record.http_response_code >= 200 and record.http_response_code < 300 %}
-                <tr class="green">
-            {% elif record.http_response_code >= 300 and record.http_response_code < 400 %}
-                <tr class="gray">
-            {% elif record.http_response_code >= 400 and record.http_response_code < 500 %}
-                <tr class="brown">
-            {% elif record.http_response_code >= 500 and record.http_response_code < 600 %}
-                <tr class="red">
-            {% else %}
-                <tr class="black">
-            {% endif %}
-                    <td>{{ record._time }}</td>
-                    <td>{{ record.name }}</td>
-                    <td>{{ record.url }}</td>
-                    <td>{{ record.http_response_code }}</td>
-                </tr>
-        {% endfor %}
+        {% if table is none %}
+            <h1>URLs response code are Under Processing, Initial Wait Time 10 Minutes</h1>
+        {% else %}
+            <table id="customers">
+                <tr class="blue">
+                <th class="row-1 row-Time">Time</td>
+                <th class="row-2 row-Name">Name</td>
+                <th class="row-2 row-URL">URL</td>
+                <th class="row-2 row-Response">Response Code</td>
+            </tr>
+
+            {% for record in table -%}
+                {% if record.http_response_code >= 200 and record.http_response_code < 300 %}
+                    <tr class="green">
+                {% elif record.http_response_code >= 300 and record.http_response_code < 400 %}
+                    <tr class="gray">
+                {% elif record.http_response_code >= 400 and record.http_response_code < 500 %}
+                    <tr class="brown">
+                {% elif record.http_response_code >= 500 and record.http_response_code < 600 %}
+                    <tr class="red">
+                {% else %}
+                    <tr class="black">
+                {% endif %}
+                        <td>{{ record._time }}</td>
+                        <td>{{ record.name }}</td>
+                        <td>{{ record.url }}</td>
+                        <td>{{ record.http_response_code }}</td>
+                    </tr>
+            {% endfor %}
+        {% endif %}
     {% endfor %}
 {% endif %}
     </table>

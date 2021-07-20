@@ -31,7 +31,6 @@ def file_header_validation(url):
 
 def sample_csv():
     data = '''name,url
-google,https://www.google.com
-    '''
+google,https://www.google.com'''
 
     return data
