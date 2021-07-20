@@ -193,7 +193,7 @@ def main():
     global cpu_count
 
     url = "file:///app/urls.csv"
-    cpu_count = multiprocessing.cpu_count()
+    cpu_count = 4
 
     if file_validation():
         print(f"{url} urlchk process started")
