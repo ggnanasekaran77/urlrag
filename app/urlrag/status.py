@@ -25,5 +25,11 @@ def main():
     influx_query = tm.render(bucket=bucket)
     result = client.query_api().query(query=influx_query)
 
+    try:
+        if len(result) <= 0:
+            result = False
+    except:
+        print("Result is not empty table")
+
     return result
 
