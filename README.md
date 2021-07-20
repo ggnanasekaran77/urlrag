@@ -73,6 +73,8 @@ docker-compose down
 ![Docker Settings](./images/docker_settings.png)
 
 ## Demo Video
-https://user-images.githubusercontent.com/8940344/126400352-f285aa40-1e83-4e2d-a909-912c6c5c0ba2.mp4
+https://user-images.githubusercontent.com/8940344/126405188-f92164c4-df57-4dcc-8a5e-d13c408fb89c.mp4
+
+
 
 
