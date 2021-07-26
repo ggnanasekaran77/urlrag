@@ -59,11 +59,10 @@ class InfluxDBWriter(multiprocessing.Process):
 
     def terminate(self) -> None:
         proc_name = self.name
-        print()
-        print('Writer: flushing data...')
+        urlrag_utils.LoggerService.info("Writer: flushing data...")
         self.write_api.close()
         self.client.close()
-        print('Writer: closed'.format(proc_name))
+        urlrag_utils.LoggerService.info('Writer: closed'.format(proc_name))
 
 
 def parse_row(row: OrderedDict):
@@ -94,7 +93,7 @@ def parse_rows(rows, total_size):
 
     counter_.value += len(_parsed_rows)
     if counter_.value % 1_000 == 0:
-        print(f"processed: {counter_}")
+        urlrag_utils.LoggerService.info(f"processed: {counter_}")
         pass
 
     queue_.put(_parsed_rows)
@@ -163,9 +162,7 @@ def process_urls():
     queue_.put(None)
     queue_.join()
 
-    print()
-    print(f'Import finished in: {datetime.now() - startTime}')
-    print()
+    urlrag_utils.LoggerService.info(f'Import finished in: {datetime.now() - startTime}')
 
 
 def file_validation():
@@ -177,13 +174,13 @@ def file_validation():
             return True
 
         else:
-            print(f"{url} has no header found or invalid header, refer below sample")
+            urlrag_utils.LoggerService.error(f"{url} has no header found or invalid header, refer below sample")
             print(urlrag_utils.sample_csv())
 
             return False
 
     else:
-        print(f"{url} is not valid file path")
+        urlrag_utils.LoggerService.error(f"{url} is not valid file path")
 
         return False
 
@@ -194,7 +191,7 @@ def db_validation():
     if client.status == 'pass':
         return True
     else:
-        print("InfluxDB is not up")
+        urlrag_utils.LoggerService.error("influxdb is not running")
         return False
 
 
@@ -206,6 +203,6 @@ def main():
     url = "file:///tmp/urls.csv"
 
     if db_validation() and file_validation():
-        print(f"{url} urlchk process started")
+        urlrag_utils.LoggerService.info(f"{url} urlchk process started")
         process_urls()
 

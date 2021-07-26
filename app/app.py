@@ -2,15 +2,20 @@ import uvicorn
 import urllib3
 
 from fastapi import FastAPI, Request
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi_utils.tasks import repeat_every
 
 from urlrag import urlchk, status as urlsrag_status
 
-
 urllib3.disable_warnings()
+
+
+log_config = uvicorn.config.LOGGING_CONFIG
+log_config["formatters"]["access"]["fmt"] = "%(asctime)s - %(name)-15s - %(levelname)-6s - %(message)s"
+log_config["formatters"]["default"]["fmt"] = "%(asctime)s - %(name)-15s - %(levelname)-6s - %(message)s"
+
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -21,6 +26,7 @@ async def home(request: Request):
     data = {
         "page": "Welcome to URL RAG DashBoard"
     }
+
     return templates.TemplateResponse("index.html", {"request": request, "data": data})
 
 

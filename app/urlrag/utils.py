@@ -3,6 +3,29 @@ Utilis methods for urlrag module
 """
 import os.path
 from csv import reader
+import logging
+import coloredlogs
+
+
+# get root logger
+logger = logging.getLogger(__name__)
+
+coloredlogs.install(fmt='%(asctime)s,%(msecs)03d - %(name)-15s - %(levelname)-6s - %(message)s')
+
+
+class LoggerService:
+
+    @staticmethod
+    def info(msg):
+        logger.info(msg)
+
+    @staticmethod
+    def warn(msg):
+        logger.warning(msg)
+
+    @staticmethod
+    def error(msg):
+        logger.error(msg)
 
 
 def get_file_path(url):
