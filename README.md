@@ -66,7 +66,7 @@ docker-compose down
 
 ## Results Screenshots
 ![Results Screenshots](./images/results.png)
-![Results Screenshots](./images/results.png)
+![Results Screenshots](./images/results1.png)
 
 ## Docker Settings
 ![Docker Settings](./images/docker_settings.png)
