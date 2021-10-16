@@ -14,7 +14,6 @@ URL Red Amber Green status
 ```csv
 name,url
 google,https://www.google.com
-credit-suisse,https://www.credit-suisse.com/sg/en.html
 gnanam,https://ggnanasekaran.com
 ```
 
