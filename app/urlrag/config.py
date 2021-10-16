@@ -19,4 +19,5 @@ class InfluxConfig:
         config['conf_file'] = conf_file
         config['bucket_name'] = config_parse['bucket']['name']
         config['influx2_org'] = config_parse['influx2']['org']
+
         return config

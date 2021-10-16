@@ -1,57 +1,15 @@
-td {
-   color: #FFFFCC;
-}
-table {
-  width:80%;
-  border-collapse:collapse;
-}
-table th{
-   background-color: #0777E7;
-   border: 1px solid #ddd;
-   padding: 8px;
-}
-
-tr.blue td {
-  background-color: lightblue;
-  border: 1px solid #ddd;
-   padding: 8px;
-}
-
 tr.green td {
   background-color: green;
-  border: 1px solid #ddd;
-   padding: 8px;
 }
 tr.red td {
   background-color: red;
-  border: 1px solid #ddd;
-   padding: 8px;
 }
 tr.amber td {
   background-color: #FFBF00;
-  border: 1px solid #ddd;
-   padding: 8px;
 }
 tr.brown td {
   background-color: #FFA500;
-  border: 1px solid #ddd;
-   padding: 8px;
 }
 tr.black td {
   background-color: black;
-  border: 1px solid #ddd;
-   padding: 8px;
-}
-
-.row-Time {
-  width: 20%;
-}
-.row-Name {
-  width: 15%;
-}
-.row-URL {
-  width: 40%;
-}
-.row-Response {
-  width: 15%;
 }

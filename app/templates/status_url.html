@@ -1,48 +1,65 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<title>URL RAG DashBoard</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<link rel="icon" href="https://img.icons8.com/fluent/48/000000/monitor.png">
-<link rel="stylesheet" href="/static/css/status_url.css">
-</head>
-
-<body>
-{% if data is defined and not data %}
-<h1>URLs response code are Under Processing, Initial Wait Time 6 Minutes for 10_000 records</h1>
-{% else %}
-    {% for table in data -%}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>URL RAG DashBoard</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="icon" href="https://img.icons8.com/fluent/48/000000/monitor.png">
+    <link href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/css/status_url.css">
+  </head>
+  <body>
+    {% if data is defined and not data %}
+      <h1>URLs response code are Under Processing, Initial Wait Time 6 Minutes for 10_000 records</h1>
+    {% else %}
+      {% for table in data -%}
         {% if table is none %}
-            <h1>URLs response code are Under Processing, Initial Wait Time 6 Minutes for 10_000 records</h1>
+          <h1>URLs response code are Under Processing, Initial Wait Time 6 Minutes for 10_000 records</h1>
         {% else %}
-            <table id="customers">
-                <tr class="blue">
-                    <th class="row-1 row-Time">Time</td>
-                    <th class="row-2 row-Name">Name</td>
-                    <th class="row-2 row-URL">URL</td>
-                    <th class="row-2 row-Response">Response Code</td>
-                </tr>
+          <div class="container">
+            <h2>URL RAG DashBoard</h2>
 
-            {% for record in table -%}
-                {% if record.http_response_code >= 200 and record.http_response_code < 300 %}
+            <table id="urlrag" class="display" style="width:100%">
+              <thead>
+                <tr class="blue">
+                  <th class="row-1 row-Time">Time</td>
+                  <th class="row-2 row-Name">Name</td>
+                  <th class="row-2 row-URL">URL</td>
+                  <th class="row-2 row-Response">Response Code</td>
+                </tr>
+              </thead>
+              <tbody>
+                {% for record in table -%}
+                  {% if record.http_response_code >= 200 and record.http_response_code < 300 %}
                     <tr class="green">
-                {% elif record.http_response_code >= 300 and record.http_response_code < 400 %}
+                  {% elif record.http_response_code >= 300 and record.http_response_code < 400 %}
                     <tr class="amber">
-                {% elif record.http_response_code >= 400 and record.http_response_code < 500 %}
+                  {% elif record.http_response_code >= 400 and record.http_response_code < 500 %}
                     <tr class="brown">
-                {% elif record.http_response_code >= 500 and record.http_response_code < 600 %}
+                  {% elif record.http_response_code >= 500 and record.http_response_code < 600 %}
                     <tr class="red">
-                {% else %}
+                  {% else %}
                     <tr class="black">
-                {% endif %}
-                        <td>{{ record._time }}</td>
-                        <td>{{ record.name }}</td>
-                        <td>{{ record.url }}</td>
-                        <td>{{ record.http_response_code }}</td>
+                  {% endif %}
+                      <td>{{ record._time }}</td>
+                      <td>{{ record.name }}</td>
+                      <td>{{ record.url }}</td>
+                      <td>{{ record.http_response_code }}</td>
                     </tr>
-            {% endfor %}
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
         {% endif %}
-    {% endfor %}
-{% endif %}
-    </table>
-</body>
+      {% endfor %}
+    {% endif %}
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('#urlrag').DataTable( {
+          "pagingType": "full_numbers"
+        } );
+      } );
+    </script>
+  </body>
 </html>

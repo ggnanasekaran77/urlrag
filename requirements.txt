@@ -11,3 +11,4 @@ python-multipart==0.0.5
 jinja2==3.0.1
 Markdown==3.3.3
 pytest==6.2.1
+coloredlogs==15.0.1
